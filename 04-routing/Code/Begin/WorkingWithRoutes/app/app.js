@@ -1,5 +1,3 @@
 (function() {
-    
-    var app = angular.module('customersApp', []);
-    
-}());
+  var app = angular.module("customersApp", ["ngRoute"]);
+})();
