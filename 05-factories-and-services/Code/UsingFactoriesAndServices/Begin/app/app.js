@@ -1,7 +1,7 @@
 (function() {
   var app = angular.module("customersApp", ["ngRoute"]);
 
-  app.config(function($routeProvider, appSettings) {
+  app.config(function($routeProvider) {
     $routeProvider
       .when("/", {
         controller: "CustomersController",
