@@ -1,35 +1,36 @@
 (function() {
-    
-    var AllOrdersController = function ($scope, customersFactory) {
-        $scope.orders = null;
-        $scope.ordersTotal = 0.0;
-        $scope.totalType;
-        
-        function init() {
-             customersFactory.getOrders()
-                .then(function(response) {
-                    $scope.orders = response.data;
-                    getOrdersTotal();
-                }, function(data, status, headers, config) {
-                    //handle error
-                });
-        }        
-        
-        function getOrdersTotal() {
-            var total = 0;
-            for (var i=0,len=$scope.orders.length;i<len;i++) {
-                total += $scope.orders[i].total;
-            }
-            $scope.ordersTotal = total;
-            $scope.totalType = ($scope.ordersTotal > 100) ? 'success' : 'danger';
+  var AllOrdersController = function($scope, customersFactory) {
+    $scope.orders = null;
+    $scope.ordersTotal = 0.0;
+    $scope.totalType;
+
+    function init() {
+      customersFactory.getOrders().then(
+        function(response) {
+          $scope.orders = response.data;
+          getOrdersTotal();
+        },
+        function(data, status, headers, config) {
+          //handle error
         }
+      );
+    }
 
-        init();
-    };
-    
-    AllOrdersController.$inject = ['$scope', 'customersFactory'];
+    function getOrdersTotal() {
+      var total = 0;
+      for (var i = 0, len = $scope.orders.length; i < len; i++) {
+        total += $scope.orders[i].total;
+      }
+      $scope.ordersTotal = total;
+      $scope.totalType = $scope.ordersTotal > 100 ? "success" : "danger";
+    }
 
-    angular.module('customersApp')
-      .controller('AllOrdersController', AllOrdersController);
-    
-}());
+    init();
+  };
+
+  AllOrdersController.$inject = ["$scope", "customersFactory"];
+
+  angular
+    .module("customersApp")
+    .controller("AllOrdersController", AllOrdersController);
+})();
